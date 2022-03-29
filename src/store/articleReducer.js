@@ -10,11 +10,16 @@ export const loadArticles = () => {
   };
 };
 
-export const addArticle = () => {
+export const addArticle = (article) => {
   return {
     type: ADD_ARTICLE,
-    articles
+    article
   };
+};
+
+const action = {
+  type: ADD_ARTICLE,
+  articles
 };
 
 const initialState = { entries: [], isLoading: true };
@@ -24,7 +29,7 @@ const articleReducer = (state = initialState, action) => {
     case LOAD_ARTICLES:
       return { ...state, entries: [...action.articles] };
     case ADD_ARTICLE:
-      return { ...state, entries: [...action.article] };
+      return { ...state, entries: [...state.entries, action.article] };
     default:
       return state;
   }
